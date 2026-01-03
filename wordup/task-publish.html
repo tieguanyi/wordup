@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="js/api-service.js"></script>
+    <script src="js/auth-manager.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布任务 - WordUp</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/task-publish.css">
+</head>
+<body>
+    <header class="header">
+        <h1>📝 发布任务</h1>
+        <button id="backBtn" class="secondary-btn">返回</button>
+    </header>
+
+    <nav class="main-nav">
+        <a href="teacher.html" class="nav-item">🏠 首页</a>
+        <a href="class-management.html" class="nav-item">👥 班级管理</a>
+        <a href="task-publish.html" class="nav-item active">📝 发布任务</a>
+        <a href="completion-data.html" class="nav-item">📊 完成度查看</a>
+        <a href="student-management.html" class="nav-item">🎯 学生管理</a>
+    </nav>
+
+    <main class="main-content">
+        <div class="task-publish-container">
+            <!-- 任务基本信息 -->
+            <div class="form-section">
+                <h2>任务基本信息</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="taskName">任务名称 *</label>
+                        <input type="text" id="taskName" placeholder="例如：第四单元单词背诵" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskType">任务类型 *</label>
+                        <select id="taskType" required>
+                            <option value="">请选择任务类型</option>
+                            <option value="reciting">单词背诵</option>
+                            <option value="testing">单词测试</option>
+                            <option value="review">错题复习</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="startTime">开始时间 *</label>
+                        <input type="datetime-local" id="startTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endTime">截止时间 *</label>
+                        <input type="datetime-local" id="endTime" required>
+                    </div>
+                </div>
+                <div class="form-group full-width">
+                    <label for="taskDescription">任务描述</label>
+                    <textarea id="taskDescription" placeholder="请输入任务的具体要求和说明..." rows="3"></textarea>
+                </div>
+            </div>
+
+            <!-- 班级选择 -->
+            <div class="form-section">
+                <h2>选择班级</h2>
+                <div class="classes-selection">
+                    <div class="selection-header">
+                        <span>已选择 <span id="selectedCount">0</span> 个班级</span>
+                        <button type="button" id="selectAll" class="small-btn">全选</button>
+                    </div>
+                    <div id="classesList" class="classes-list">
+                        <!-- 班级列表会动态填充 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 单词选择 -->
+            <div id="wordSelection" class="form-section">
+                <h2>选择单词</h2>
+                
+                <!-- 词书选择 -->
+                <div class="wordbook-selection">
+                    <label>选择词书：</label>
+                    <select id="wordbookSelect">
+                        <option value="cet4">四级核心词汇 (2000词)</option>
+                        <option value="cet6">六级核心词汇 (2500词)</option>
+                        <option value="custom">自定义单词</option>
+                    </select>
+                    <button type="button" id="previewWords" class="small-btn">预览单词</button>
+                </div>
+
+                <!-- 单词数量设置 -->
+                <div class="word-count-settings">
+                    <div class="form-group">
+                        <label for="wordCount">单词数量</label>
+                        <input type="number" id="wordCount" min="1" max="100" value="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="difficultyFilter">难度筛选</label>
+                        <select id="difficultyFilter">
+                            <option value="all">全部难度</option>
+                            <option value="easy">简单</option>
+                            <option value="medium">中等</option>
+                            <option value="hard">困难</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 自定义单词输入 -->
+                <div id="customWordsSection" class="custom-words-section hidden">
+                    <label>自定义单词（每行一个单词）</label>
+                    <textarea id="customWords" placeholder="请输入单词，每行一个：
+abandon
+ability
+abnormal
+..." rows="6"></textarea>
+                    <button type="button" id="validateWords" class="small-btn">验证单词</button>
+                    <span id="wordValidationResult" class="validation-result"></span>
+                </div>
+
+                <!-- 预览单词列表 -->
+                <div id="wordPreview" class="word-preview hidden">
+                    <h4>预览单词列表</h4>
+                    <div id="previewList" class="preview-list">
+                        <!-- 预览单词会动态填充 -->
+                    </div>
+                    <div class="preview-stats">
+                        <span>共 <span id="previewCount">0</span> 个单词</span>
+                        <span>难度分布：简单 <span id="easyCount">0</span> | 中等 <span id="mediumCount">0</span> | 困难 <span id="hardCount">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 测试设置（仅测试任务显示） -->
+            <div id="testSettings" class="form-section hidden">
+                <h2>测试设置</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="questionCount">题目数量</label>
+                        <input type="number" id="questionCount" min="5" max="50" value="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="timeLimit">时间限制（分钟）</label>
+                        <input type="number" id="timeLimit" min="5" max="120" value="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="passingScore">及格分数</label>
+                        <input type="number" id="passingScore" min="0" max="100" value="60">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="allowRetake"> 允许重复测试
+                    </label>
+                </div>
+            </div>
+
+            <!-- 发布按钮 -->
+            <div class="form-actions">
+                <button type="button" id="saveDraft" class="secondary-btn">保存草稿</button>
+                <button type="button" id="previewTask" class="secondary-btn">预览任务</button>
+                <button type="button" id="publishTask" class="primary-btn">发布任务</button>
+            </div>
+        </div>
+
+        <!-- 任务预览模态框 -->
+        <div id="previewModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>任务预览</h3>
+                    <button type="button" id="closePreview" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="preview-task">
+                        <h4 id="previewTaskName">任务名称</h4>
+                        <p id="previewTaskDescription">任务描述</p>
+                        <div class="preview-details">
+                            <div class="detail-item">
+                                <strong>任务类型：</strong>
+                                <span id="previewTaskType">单词背诵</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>时间安排：</strong>
+                                <span id="previewTimeRange">开始时间 - 结束时间</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>目标班级：</strong>
+                                <span id="previewClasses">班级列表</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>单词数量：</strong>
+                                <span id="previewWordCount">0</span>
+                            </div>
+                            <div id="previewTestSettings" class="detail-item hidden">
+                                <strong>测试设置：</strong>
+                                <span id="previewTestDetails"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="confirmPublish" class="primary-btn">确认发布</button>
+                    <button type="button" id="cancelPreview" class="secondary-btn">返回修改</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/task-publish.js"></script>
+</body>
+</html>

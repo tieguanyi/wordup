@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="js/api-service.js"></script>
+    <script src="js/auth-manager.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生词查询 - WordUp</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/word-query.css">
+</head>
+<!-- 在以下页面添加这一行 -->
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<body>
+    <header class="header">
+        <h1>🔍 生词查询</h1>
+        <button id="backBtn" class="secondary-btn">返回</button>
+    </header>
+
+    <nav class="main-nav">
+        <a href="student.html" class="nav-item">🏠 首页</a>
+        <a href="word-reciting.html" class="nav-item">📖 单词背诵</a>
+        <a href="word-query.html" class="nav-item active">🔍 生词查询</a>
+        <a href="wrong-words.html" class="nav-item">❌ 错题本</a>
+        <a href="tasks.html" class="nav-item">📋 我的任务</a>
+    </nav>
+
+    <main class="main-content">
+        <!-- 搜索区域 -->
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="输入英文单词或中文释义..." autocomplete="off">
+                <button id="searchBtn" class="search-btn">搜索</button>
+            </div>
+            <div class="search-options">
+                <button id="voiceSearchBtn" class="icon-btn" title="语音搜索">🎤</button>
+                <button id="clearHistoryBtn" class="icon-btn" title="清除历史">🗑️</button>
+            </div>
+        </div>
+
+        <!-- 搜索建议 -->
+        <div id="searchSuggestions" class="suggestions-container hidden">
+            <div class="suggestions-list" id="suggestionsList">
+                <!-- 搜索建议会动态填充到这里 -->
+            </div>
+        </div>
+
+        <!-- 查询结果 -->
+        <div id="searchResults" class="results-section hidden">
+            <div class="word-detail-card">
+                <div class="word-header">
+                    <div class="word-title">
+                        <h2 id="resultWord">abandon</h2>
+                        <button id="wordSoundBtn" class="sound-btn">🔊</button>
+                    </div>
+                    <button id="addToWordBook" class="bookmark-btn">⭐ 加入生词本</button>
+                </div>
+
+                <div class="word-info">
+                    <span id="resultPhonetic" class="phonetic">/əˈbændən/</span>
+                    <span id="resultDifficulty" class="difficulty-tag">中等</span>
+                </div>
+
+                <div class="meanings-section">
+                    <h3>释义</h3>
+                    <div id="meaningsList" class="meanings-list">
+                        <!-- 释义会动态填充 -->
+                    </div>
+                </div>
+
+                <div class="examples-section">
+                    <h3>例句</h3>
+                    <div id="examplesList" class="examples-list">
+                        <!-- 例句会动态填充 -->
+                    </div>
+                </div>
+
+                <div class="related-words">
+                    <h3>相关词汇</h3>
+                    <div id="relatedWords" class="related-list">
+                        <!-- 相关词汇会动态填充 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 无结果提示 -->
+        <div id="noResults" class="no-results hidden">
+            <div class="empty-state">
+                <h3>🔍 未找到相关单词</h3>
+                <p>请检查拼写或尝试其他关键词</p>
+                <div class="suggestions">
+                    <p>建议：</p>
+                    <ul>
+                        <li>检查单词拼写是否正确</li>
+                        <li>尝试搜索中文释义</li>
+                        <li>使用更简单的词汇</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索历史 -->
+        <div id="searchHistory" class="history-section">
+            <div class="section-header">
+                <h3>📚 搜索历史</h3>
+                <button id="toggleHistory" class="toggle-btn">收起</button>
+            </div>
+            <div id="historyList" class="history-list">
+                <!-- 历史记录会动态填充 -->
+            </div>
+        </div>
+
+        <!-- 生词本管理 -->
+        <div id="wordBookSection" class="wordbook-section">
+            <div class="section-header">
+                <h3>⭐ 我的生词本</h3>
+                <button id="toggleWordBook" class="toggle-btn">收起</button>
+            </div>
+            <div id="wordBookList" class="wordbook-list">
+                <!-- 生词本内容会动态填充 -->
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/word-query.js"></script>
+</body>
+</html>

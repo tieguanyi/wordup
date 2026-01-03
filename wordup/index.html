@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="js/api-service.js"></script>
+    <script src="js/auth-manager.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordUp - 英语单词背诵</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<!-- 在以下页面添加这一行 -->
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<body>
+    <div class="login-container">
+        <h1>📚 WordUp</h1>
+        <p>英语四六级单词背诵系统</p>
+        
+        <form id="loginForm" class="login-form">
+            <input type="text" id="username" placeholder="请输入账号" required>
+            <input type="password" id="password" placeholder="请输入密码" required>
+            
+            <select id="role">
+                <option value="student">学生</option>
+                <option value="teacher">老师</option>
+                <option value="admin">管理员</option>
+            </select>
+            
+            <button type="submit">登录</button>
+        </form>
+        
+        <div class="demo-accounts">
+            <p>测试账号：</p>
+            <p>学生 - 账号: teststudent 密码: 123456</p>
+            <p>老师 - 账号: testteacher 密码: 123456</p>
+            <p>管理员 - 账号: testadmin 密码: 123456</p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
