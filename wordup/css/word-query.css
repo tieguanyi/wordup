@@ -1,0 +1,368 @@
+/* 生词查询页面专用样式 */
+
+.search-section {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.search-box {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#searchInput:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.search-btn {
+    padding: 15px 30px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background: #45a049;
+}
+
+.search-options {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.icon-btn {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.icon-btn:hover {
+    background: #e9ecef;
+    transform: scale(1.05);
+}
+
+/* 搜索建议 */
+.suggestions-container {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: 12px 20px;
+    border-bottom: 1px solid #f8f9fa;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.suggestion-item:hover {
+    background: #f8f9fa;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+/* 查询结果 */
+.results-section {
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.word-detail-card {
+    padding: 30px;
+}
+
+.word-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.word-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#resultWord {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.sound-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.sound-btn:hover {
+    background: #f8f9fa;
+}
+
+.bookmark-btn {
+    background: #ffc107;
+    color: #212529;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.bookmark-btn:hover {
+    background: #e0a800;
+    transform: translateY(-2px);
+}
+
+.bookmark-btn.added {
+    background: #6c757d;
+    color: white;
+}
+
+.word-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.phonetic {
+    font-size: 1.2em;
+    color: #666;
+    font-style: italic;
+}
+
+.difficulty-tag {
+    background: #ffc107;
+    color: #212529;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 释义和例句 */
+.meanings-section, .examples-section, .related-words {
+    margin-bottom: 30px;
+}
+
+.meanings-section h3, .examples-section h3, .related-words h3 {
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+}
+
+.meaning-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid #4CAF50;
+}
+
+.part-of-speech {
+    display: inline-block;
+    background: #4CAF50;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+}
+
+.example-item {
+    background: white;
+    border: 1px solid #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.example-english {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.example-chinese {
+    color: #666;
+    font-style: italic;
+}
+
+.related-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.related-word {
+    background: #e9ecef;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.related-word:hover {
+    background: #dee2e6;
+    transform: translateY(-2px);
+}
+
+/* 无结果状态 */
+.no-results {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.empty-state h3 {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.suggestions {
+    margin-top: 20px;
+    text-align: left;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.suggestions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.suggestions li {
+    padding: 5px 0;
+    color: #666;
+}
+
+/* 历史和生词本 */
+.history-section, .wordbook-section {
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.section-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.toggle-btn {
+    background: none;
+    border: 1px solid #dee2e6;
+    padding: 5px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+}
+
+.history-list, .wordbook-list {
+    padding: 20px 30px;
+}
+
+.history-item, .wordbook-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.history-item:last-child, .wordbook-item:last-child {
+    border-bottom: none;
+}
+
+.history-word, .wordbook-word {
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.history-word:hover, .wordbook-word:hover {
+    color: #4CAF50;
+}
+
+.history-time {
+    color: #666;
+    font-size: 14px;
+}
+
+.remove-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.remove-btn:hover {
+    background: #c82333;
+}
+
+/* 工具类 */
+.hidden {
+    display: none !important;
+}
+
+.collapsed .history-list,
+.collapsed .wordbook-list {
+    display: none;
+}

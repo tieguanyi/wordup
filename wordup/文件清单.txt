@@ -1,0 +1,107 @@
+卷 拯救者PSSD 的文件夹 PATH 列表
+卷序列号为 1473-7E65
+D:.
+│  index.html
+│  student.html
+│  task-publish.html
+│  tasks.html
+│  teacher.html
+│  word-query.html
+│  word-reciting.html
+│  wrong-words.html
+│  word-management.html
+│  admin.html
+│  user-management.html
+│  project_structure.txt
+│  数据库记录.txt
+│  文件清单.txt
+│  
+├─css
+│      style.css
+│      task-publish.css
+│      tasks.css
+│      word-query.css
+│      word-reciting.css
+│      wrong-words.css
+│      word-management.css
+│      
+├─js
+│      auth.js
+│      student.js
+│      task-publish.js
+│      tasks.js
+│      teacher.js
+│      word-query.js
+│      word-reciting.js
+│      wrong-words.js
+│      admin.js
+│      word-management.js
+│      db.js
+│      api-service.js
+│      auth-manager.js
+│      
+└─backend
+    │  requirements.txt
+    │  config.py
+    │  .env
+    │  run.py
+    │  create_test_data.py
+    │  verify_tables.py
+    │  final_test.py
+    │  system_status.py
+    │  test.py
+    │  
+    ├─app
+    │  │  __init__.py
+    │  │  models.py
+    │  │  
+    │  ├─utils
+    │  │  │  database.py
+    │  │  │  helpers.py
+    │  │  │  
+    │  │  └─__pycache__
+    │  │          helpers.cpython-39.pyc
+    │  │          helpers.cpython-312.pyc
+    │  │          
+    │  ├─services
+    │  │  │  auth_service.py
+    │  │  │  word_service.py
+    │  │  │  
+    │  │  └─__pycache__
+    │  │          auth_service.cpython-39.pyc
+    │  │          word_service.cpython-39.pyc
+    │  │          word_service.cpython-312.pyc
+    │  │          auth_service.cpython-312.pyc
+    │  │          
+    │  ├─routes
+    │  │  │  auth.py
+    │  │  │  words.py
+    │  │  │  users.py
+    │  │  │  classes.py
+    │  │  │  tasks.py
+    │  │  │  scores.py
+    │  │  │  
+    │  │  └─__pycache__
+    │  │          auth.cpython-39.pyc
+    │  │          words.cpython-39.pyc
+    │  │          users.cpython-39.pyc
+    │  │          classes.cpython-39.pyc
+    │  │          tasks.cpython-39.pyc
+    │  │          scores.cpython-39.pyc
+    │  │          words.cpython-312.pyc
+    │  │          classes.cpython-312.pyc
+    │  │          tasks.cpython-312.pyc
+    │  │          scores.cpython-312.pyc
+    │  │          auth.cpython-312.pyc
+    │  │          users.cpython-312.pyc
+    │  │          
+    │  └─__pycache__
+    │          __init__.cpython-39.pyc
+    │          models.cpython-39.pyc
+    │          __init__.cpython-312.pyc
+    │          models.cpython-312.pyc
+    │          
+    └─__pycache__
+            config.cpython-39.pyc
+            config.cpython-312.pyc
+            

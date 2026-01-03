@@ -1,0 +1,396 @@
+/* 单词管理专用样式 */
+.wordbook-selection {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.wordbook-selection label {
+    font-weight: bold;
+    color: #333;
+}
+
+.toolbar {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.toolbar-left, .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 200px;
+}
+
+.word-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2196F3;
+}
+
+.words-list {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.list-header h3 {
+    color: #333;
+    margin: 0;
+}
+
+.list-count {
+    color: #666;
+    font-size: 14px;
+}
+
+.words-container {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.word-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+}
+
+.word-item:hover {
+    border-color: #2196F3;
+    background: #f8fbff;
+}
+
+.word-main {
+    flex: 1;
+}
+
+.word-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.word-text {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.word-phonetic {
+    color: #666;
+    font-style: italic;
+}
+
+.difficulty-tag {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.difficulty-tag.easy {
+    background: #d4edda;
+    color: #155724;
+}
+
+.difficulty-tag.medium {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.difficulty-tag.hard {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.word-meanings {
+    color: #555;
+    font-size: 14px;
+}
+
+.meaning-line {
+    margin-bottom: 2px;
+}
+
+.part-of-speech {
+    color: #2196F3;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.word-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* 模态框样式 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 20px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* 表单样式 */
+.word-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* 导入区域 */
+.import-options {
+    margin-bottom: 15px;
+}
+
+.import-area {
+    margin-bottom: 15px;
+}
+
+.import-area textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: monospace;
+    resize: vertical;
+    min-height: 200px;
+}
+
+.import-hint {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.import-hint pre {
+    background: #e9ecef;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 5px;
+    overflow-x: auto;
+}
+
+.import-stats {
+    text-align: center;
+    padding: 10px;
+    background: #e7f3ff;
+    border-radius: 4px;
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+.empty-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.empty-state p {
+    margin-bottom: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .wordbook-selection {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .toolbar-left, .toolbar-right {
+        justify-content: center;
+    }
+    
+    .word-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .word-actions {
+        align-self: flex-end;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+}
+/* 修复模态框显示问题 */
+.modal:not(.hidden) {
+    display: flex !important;
+}
+
+.modal.hidden {
+    display: none !important;
+}
+
+/* 确保隐藏类优先级最高 */
+.hidden {
+    display: none !important;
+}
+/* 确保模态框正确显示/隐藏 */
+.modal:not(.hidden) {
+    display: flex !important;
+}
+
+.modal.hidden {
+    display: none !important;
+}
+
+/* 防止重复绑定 */
+.bound {
+    pointer-events: none;
+}

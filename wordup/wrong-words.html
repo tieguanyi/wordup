@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="js/api-service.js"></script>
+    <script src="js/auth-manager.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>错题本 - WordUp</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/wrong-words.css">
+</head>
+<!-- 在以下页面添加这一行 -->
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<body>
+    <header class="header">
+        <h1>❌ 错题本</h1>
+        <button id="backBtn" class="secondary-btn">返回</button>
+    </header>
+
+    <nav class="main-nav">
+        <a href="student.html" class="nav-item">🏠 首页</a>
+        <a href="word-reciting.html" class="nav-item">📖 单词背诵</a>
+        <a href="word-query.html" class="nav-item">🔍 生词查询</a>
+        <a href="wrong-words.html" class="nav-item active">❌ 错题本</a>
+        <a href="tasks.html" class="nav-item">📋 我的任务</a>
+    </nav>
+
+    <main class="main-content">
+        <!-- 统计概览 -->
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div class="stat-info">
+                    <span class="stat-number" id="totalWrongWords">0</span>
+                    <span class="stat-label">总错题数</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-info">
+                    <span class="stat-number" id="todayReviewed">0</span>
+                    <span class="stat-label">今日复习</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-info">
+                    <span class="stat-number" id="masteredWords">0</span>
+                    <span class="stat-label">已掌握</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-info">
+                    <span class="stat-number" id="accuracyRate">0%</span>
+                    <span class="stat-label">正确率</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 操作工具栏 -->
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <button id="startReview" class="primary-btn">开始复习</button>
+                <button id="quickTest" class="secondary-btn">快速测试</button>
+            </div>
+            <div class="toolbar-right">
+                <select id="filterSelect" class="filter-select">
+                    <option value="all">全部错题</option>
+                    <option value="today">今日错题</option>
+                    <option value="week">本周错题</option>
+                    <option value="difficult">高频错题</option>
+                    <option value="mastered">已掌握</option>
+                </select>
+                <button id="clearAllBtn" class="danger-btn">清空错题</button>
+            </div>
+        </div>
+
+        <!-- 错题列表 -->
+        <div class="wrong-words-list">
+            <div class="list-header">
+                <h3>错题列表</h3>
+                <span class="list-count">共 <span id="listCount">0</span> 个单词</span>
+            </div>
+
+            <div id="wordsContainer" class="words-container">
+                <!-- 错题卡片会动态填充到这里 -->
+            </div>
+
+            <!-- 空状态 -->
+            <div id="emptyState" class="empty-state hidden">
+                <div class="empty-icon">📝</div>
+                <h3>暂无错题</h3>
+                <p>开始背诵单词，系统会自动记录你的错题</p>
+                <button onclick="location.href='word-reciting.html'" class="primary-btn">去背单词</button>
+            </div>
+        </div>
+
+        <!-- 复习模式 -->
+        <div id="reviewMode" class="review-mode hidden">
+            <div class="review-header">
+                <h2>错题复习</h2>
+                <div class="review-progress">
+                    <span id="reviewProgress">0/0</span>
+                    <button id="exitReview" class="secondary-btn">退出复习</button>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="word-display">
+                    <h2 id="reviewWord">abandon</h2>
+                    <button id="reviewSoundBtn" class="sound-btn">🔊</button>
+                </div>
+                
+                <div class="review-options">
+                    <div class="option-group">
+                        <label>请选择正确释义：</label>
+                        <div id="meaningOptions" class="options-list">
+                            <!-- 选项会动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-feedback hidden" id="reviewFeedback">
+                    <div class="feedback-content">
+                        <div class="correct-answer">
+                            <strong>正确答案：</strong>
+                            <span id="correctMeaning">放弃，遗弃</span>
+                        </div>
+                        <div class="word-details">
+                            <p><strong>音标：</strong><span id="reviewPhonetic">/əˈbændən/</span></p>
+                            <p><strong>例句：</strong><span id="reviewExample">He abandoned his car and ran away.</span></p>
+                        </div>
+                    </div>
+                    <button id="nextWordBtn" class="primary-btn">下一个</button>
+                </div>
+            </div>
+
+            <div class="review-stats">
+                <div class="stat-item">
+                    <span>正确：</span>
+                    <span id="correctCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>错误：</span>
+                    <span id="wrongCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>正确率：</span>
+                    <span id="reviewAccuracy">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 测试完成页面 -->
+        <div id="completionPage" class="completion-page hidden">
+            <div class="completion-card">
+                <h2>🎉 复习完成！</h2>
+                <div class="completion-stats">
+                    <div class="completion-stat">
+                        <span class="stat-value" id="finalCorrect">0</span>
+                        <span class="stat-label">正确</span>
+                    </div>
+                    <div class="completion-stat">
+                        <span class="stat-value" id="finalWrong">0</span>
+                        <span class="stat-label">错误</span>
+                    </div>
+                    <div class="completion-stat">
+                        <span class="stat-value" id="finalAccuracy">0%</span>
+                        <span class="stat-label">正确率</span>
+                    </div>
+                </div>
+                <div class="completion-actions">
+                    <button id="reviewAgainBtn" class="primary-btn">再次复习</button>
+                    <button id="backToListBtn" class="secondary-btn">返回列表</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/wrong-words.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="js/api-service.js"></script>
+    <script src="js/auth-manager.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单词背诵 - WordUp</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/word-reciting.css">
+</head>
+<!-- 在以下页面添加这一行 -->
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<body>
+    <header class="header">
+        <h1>📖 单词背诵</h1>
+        <div class="header-actions">
+            <span id="progress">进度: 0/0</span>
+            <button id="backBtn" class="secondary-btn">返回</button>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="student.html" class="nav-item">🏠 首页</a>
+        <a href="word-reciting.html" class="nav-item active">📖 单词背诵</a>
+        <a href="word-query.html" class="nav-item">🔍 生词查询</a>
+        <a href="wrong-words.html" class="nav-item">❌ 错题本</a>
+        <a href="tasks.html" class="nav-item">📋 我的任务</a>
+    </nav>
+
+    <main class="main-content">
+        <!-- 词书选择 -->
+        <div id="bookSelection" class="selection-section">
+            <h2>选择词书</h2>
+            <div class="book-grid">
+                <div class="book-card" data-book="cet4">
+                    <h3>四级核心词汇</h3>
+                    <p>2000个高频词汇</p>
+                    <span class="word-count">2000词</span>
+                </div>
+                <div class="book-card" data-book="cet6">
+                    <h3>六级核心词汇</h3>
+                    <p>2500个高级词汇</p>
+                    <span class="word-count">2500词</span>
+                </div>
+                <div class="book-card" data-book="task">
+                    <h3>任务词汇</h3>
+                    <p>老师布置的单词</p>
+                    <span class="word-count">50词</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 背诵模式 -->
+        <div id="recitingMode" class="reciting-section hidden">
+            <div class="word-card">
+                <div class="word-header">
+                    <button id="soundBtn" class="icon-btn">🔊</button>
+                    <span class="difficulty-tag">中等</span>
+                </div>
+                
+                <div class="word-content">
+                    <h2 id="wordText">abandon</h2>
+                    <div id="phonetic" class="phonetic">/əˈbændən/</div>
+                    
+                    <div id="meaningSection" class="meaning-section hidden">
+                        <div class="meaning">
+                            <span class="part-of-speech">v.</span>
+                            <span id="wordMeaning">放弃，遗弃</span>
+                        </div>
+                        <div class="example">
+                            <p id="wordExample">He abandoned his car and ran away.</p>
+                            <p class="translation">他弃车逃跑了。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="word-actions">
+                    <button id="showMeaningBtn" class="primary-btn">显示释义</button>
+                    <div id="feedbackButtons" class="feedback-buttons hidden">
+                        <button id="knowBtn" class="success-btn">认识</button>
+                        <button id="dontKnowBtn" class="danger-btn">不认识</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div class="session-stats">
+                    <span>今日已学: <span id="todayLearned">0</span>词</span>
+                    <span>正确率: <span id="accuracyRate">0%</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 完成提示 -->
+        <div id="completionMessage" class="completion-section hidden">
+            <div class="completion-card">
+                <h2>🎉 完成！</h2>
+                <p>本次学习会话已完成</p>
+                <div class="completion-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">学习单词</span>
+                        <span class="stat-value" id="completedWords">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">正确率</span>
+                        <span class="stat-value" id="finalAccuracy">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">新增错题</span>
+                        <span class="stat-value" id="newWrongWords">0</span>
+                    </div>
+                </div>
+                <div class="completion-actions">
+                    <button id="reviewWrongBtn" class="primary-btn">复习错题</button>
+                    <button id="continueBtn" class="secondary-btn">继续学习</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/word-reciting.js"></script>
+</body>
+</html>
